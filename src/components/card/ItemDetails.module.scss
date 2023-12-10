@@ -1,0 +1,54 @@
+@use 'src/styles/variables' as v;
+
+@keyframes rise {
+  from {
+    top: 50%;
+  }
+  to {
+    top: 0%;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  animation-name: rise;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  position: absolute;
+  background-color: v.$color-primary;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+$image-length: 150px;
+.image {
+  width: $image-length;
+  height: $image-length;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.titleContainer > div {
+  flex: 50%;
+}
+
+.closeIcon {
+  cursor: pointer;
+}

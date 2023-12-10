@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.profilePic {
+  flex: 1;
+  width: 100px;
+  height: 160px;
+  border-radius: 50%;
+  background-size: contain;
+  align-self: top;
+}
+
+.description {
+  flex: 4;
+  padding: 0 1rem;
+}

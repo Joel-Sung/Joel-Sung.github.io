@@ -1,0 +1,167 @@
+$open-portal-duration: 0.7s;
+
+// With cover
+$cover-rise-delay: $open-portal-duration;
+$cover-rise-duration: 0.7s;
+$appear-delay: $cover-rise-delay + $cover-rise-duration;
+$fold-right-delay: $cover-rise-delay + $cover-rise-duration;
+$fold-right-duration: 0.7s;
+$close-slow-portal-delay: $fold-right-delay + $fold-right-duration;
+$close-slow-portal-duration: 0.7s;
+
+// Without cover
+$text-rise-delay: $open-portal-duration;
+$text-rise-duration: 0.7s;
+$close-fast-portal-delay: $text-rise-delay + $text-rise-duration;
+$close-fast-portal-duration: 0.7s;
+
+.container {
+  position: relative;
+}
+
+.instant-text, .animated-text {
+  font-size: 10vw;
+  position: relative;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.instant-text {
+  // Initial state
+  opacity: 0;
+
+  animation-name: appear;
+  animation-duration: 0;
+  animation-delay: $appear-delay;
+  animation-fill-mode: forwards;
+}
+
+@keyframes text-rise {
+  from {
+    transform: translateY(30%);
+  }
+  to {
+    opacity: 100;
+    transform: translateY(0);
+  }
+}
+
+.animated-text {
+  // Initial state
+  opacity: 0;
+
+  animation-name: text-rise;
+  animation-duration: $text-rise-duration;
+  animation-delay: $text-rise-delay;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cover-rise {
+  from {
+    height: 0%;
+    top: 100%;
+  }
+  to {
+    height: 100%;
+    top: 0;
+  }
+}
+
+@keyframes fold-right {
+  from {
+    left: 0%;
+    width: 100%;
+  }
+  to {
+    left: 100%;
+    width:0%;
+  }
+}
+
+.cover {
+  // Initial state
+  width: 100%;
+  height: 0%;
+  top: 100%;
+
+  animation-name: cover-rise, fold-right;
+  animation-duration: $cover-rise-duration, $fold-right-duration;
+  animation-delay: $cover-rise-delay, $fold-right-delay;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  position: absolute;
+  background-color: black;
+}
+
+
+@keyframes open-portal {
+  from {
+    left: 50%;
+    width: 0%;
+  }
+  to {
+    left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes close-portal {
+  from {
+    left: 0%;
+    width: 100%;
+  }
+  to {
+    left: 50%;
+    width: 0%;
+  }
+}
+
+.portal-slow, .portal-fast {
+  position: absolute;
+  height: 10%;
+  background-color: black;
+  border-radius: 20px;
+}
+
+.portal-slow {
+  // Initial state
+  left: 0%;
+  width: 100%;
+  top: 100;
+
+  animation-name: open-portal, close-portal;
+  animation-duration: $open-portal-duration, $close-slow-portal-duration;
+  animation-delay: 0s, $close-slow-portal-delay;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.portal-fast {
+  // Initial state
+  left: 0%;
+  width: 100%;
+  top: 100;
+
+  animation-name: open-portal, close-portal;
+  animation-duration: $open-portal-duration, $close-fast-portal-duration;
+  animation-delay: 0s, $close-fast-portal-delay;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  position: absolute;
+  height: 10%;
+  background-color: black;
+}
