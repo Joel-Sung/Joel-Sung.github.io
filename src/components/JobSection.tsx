@@ -42,7 +42,7 @@ export default function JobSection({ className }) {
           toggleDetails({
             src: m1Logo,
             company: "M1 Limited",
-            duration: "Jan 2021 - Jun 2021",
+            duration: "May 2022 - Oct 2022",
             position: "RPA Development Intern",
             location: "Singapore",
             description: m1Description
