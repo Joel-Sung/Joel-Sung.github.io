@@ -26,9 +26,9 @@ $box-length: 150px;
   height: 0;
   width: 100%;
 
-  background-color: v.$color-grey-translucent;
+  background-color: v.$color-grey;
 
-  transition: all 0.5s ease-out;
+  transition: all 0.35s ease-in-out;
 }
 
 .overlayDetails {
@@ -42,11 +42,16 @@ $box-length: 150px;
   align-items: center;
   justify-content: space-evenly;
 
-  transition: all 0.20s ease-in;
+  transition: all 0.30s ease-in-out;
 }
 
 .image {
   width: $box-length;
   height: $box-length;
   border-radius: 5px;
+}
+
+.button:hover {
+  color: v.$color-white;
+  background-color: v.$color-pink;
 }

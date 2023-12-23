@@ -38,28 +38,62 @@
   flex-direction: column;
 }
 
-$control-radius: 35px;
-.controlInactive, .controlActive {
-  padding: 1rem;
+$control-size: 75px;
+$control-radius: 50%;
+$control-margin: 10px;
+.controlInactive, .controlActive, .slider {
   cursor: pointer;
-  background-color: v.$color-grey;
-  width: $control-radius;
-  height: $control-radius;
-  border-radius: 50%;
+  width: $control-size;
+  height: $control-size;
+  border-radius: $control-radius;
+  margin: $control-margin 0;
+}
+
+.controlInactive, .controlActive {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 10px 0;
+  align-items: center;
+  background-color: v.$color-grey;
+}
+
+.slider {
+  position: absolute;
+  transition: transform 0.25s ease-in-out;
+  background-color: v.$color-pink;
+}
+
+.controlIcon {
+  width: 90%;
+  height: 90%;
+  color: v.$color-white;
+  z-index: 1;
 }
 
 .controlInactive:hover {
   background-color: v.$color-light-grey;
 }
 
-.controlActive {
-  background-color: v.$color-pink;
+.controlActive:hover {
+  & ~ .slider {
+    background-color: v.$color-light-pink;
+  }
 }
 
-.controlActive:hover {
-  background-color: v.$color-light-pink;
+$shift: $control-size + $control-margin * 2;
+.controlActive.controlProfile {
+  & ~ .slider {
+    transform: translateY(0%);
+  }
+}
+
+.controlActive.controlJobs {
+  & ~ .slider {
+    transform: translateY($shift);
+  }
+}
+
+.controlActive.controlProjects {
+  & ~ .slider {
+    transform: translateY($shift * 2);
+  }
 }
