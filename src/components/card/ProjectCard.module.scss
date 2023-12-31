@@ -1,0 +1,53 @@
+.container {
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.frontContainer,
+.backContainer {
+  backface-visibility: hidden;
+  padding: 1vh 1vw;
+  transition: all 0.5s ease;
+}
+
+.frontContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.frontR {
+  flex-direction: row-reverse !important;
+  justify-content: space-between;
+}
+
+.backContainer {
+  position: absolute;
+  top: 0;
+}
+
+$image-size: 35vw;
+$image-max-size: 200px;
+.image {
+  height: $image-size;
+  width: $image-size;
+  max-width: $image-max-size;
+  max-height: $image-max-size;
+  border-radius: 5%;
+  margin-right: 2vw;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

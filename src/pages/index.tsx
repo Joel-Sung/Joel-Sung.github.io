@@ -4,34 +4,49 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import JobSection from "../components/JobSection";
 import ProfileSection from "../components/ProfileSection";
 import ProjectSection from "../components/ProjectSection";
 import styles from "./index.module.scss";
 
 interface ControlButtonProps {
-  onClick: () => void;
+  href?: string;
+  onClick?: () => void;
   isActive: boolean;
-  styleId: string;
+  stylesId: string;
   icon: any;
 }
 function ControlButton(props: ControlButtonProps) {
-  const { onClick, isActive, styleId, icon } = props;
+  const { href, onClick, isActive, stylesId, icon } = props;
+
   return (
-    <button
-      onClick={onClick}
+    <Link
+      href={href}
+      scroll={false}
       className={`
-          ${isActive ? styles.controlActive : styles.controlInactive} 
-          ${styleId}
-        `}
+        ${isActive ? styles.controlActive : styles.controlInactive} 
+        ${stylesId}
+      `}
+      onClick={onClick}
     >
       <FontAwesomeIcon icon={icon} className={styles.controlIcon} />
-    </button>
+    </Link>
   );
 }
 
-export default function HomePage({}) {
+function Sections({}) {
+  return (
+    <div className={styles.sections}>
+      <ProfileSection className={styles.section} />
+      <JobSection className={styles.section} id="job-section" />
+      <ProjectSection className={styles.section} id="project-section" />
+    </div>
+  );
+}
+
+function Controls({}) {
   const [profileActive, setProfileActive] = useState(true);
   const [jobsActive, setJobsActive] = useState(false);
   const [projectsActive, setProjectsActive] = useState(false);
@@ -43,33 +58,61 @@ export default function HomePage({}) {
     setActive(true);
   };
 
+  const [scrolledUp, setScrolledUp] = useState(false);
+  useEffect(() => {
+    let prevScrollPos = window.scrollY;
+
+    window.addEventListener("scroll", function () {
+      const currentScrollPos = window.scrollY;
+      setScrolledUp(prevScrollPos > currentScrollPos);
+      prevScrollPos = currentScrollPos;
+    });
+  }, []);
+
   return (
-    <div className={styles.main}>
-      <div className={styles.sections}>
-        {profileActive && <ProfileSection className={styles.section} />}
-        {jobsActive && <JobSection className={styles.section} />}
-        {projectsActive && <ProjectSection className={styles.section} />}
-      </div>
-      <div className={styles.controls}>
-        <ControlButton
-          onClick={() => changeActive(setProfileActive)}
-          isActive={profileActive}
-          styleId={styles.controlProfile}
-          icon={faUser}
-        />
-        <ControlButton
-          onClick={() => changeActive(setJobsActive)}
-          isActive={jobsActive}
-          styleId={styles.controlJobs}
-          icon={faBriefcase}
-        />
-        <ControlButton
-          onClick={() => changeActive(setProjectsActive)}
-          isActive={projectsActive}
-          styleId={styles.controlProjects}
-          icon={faLightbulb}
-        />
-        <span className={styles.slider}></span>
+    <div className={`${styles.controls} ${!scrolledUp && styles.hide}`}>
+      <ControlButton
+        href="#profile-section"
+        onClick={() => changeActive(setProfileActive)}
+        isActive={profileActive}
+        stylesId={styles.controlProfile}
+        icon={faUser}
+      />
+      <ControlButton
+        href="#job-section"
+        onClick={() => changeActive(setJobsActive)}
+        isActive={jobsActive}
+        stylesId={styles.controlJobs}
+        icon={faBriefcase}
+      />
+      <ControlButton
+        href="#project-section"
+        onClick={() => changeActive(setProjectsActive)}
+        isActive={projectsActive}
+        stylesId={styles.controlProjects}
+        icon={faLightbulb}
+      />
+      <span className={styles.slider}></span>
+    </div>
+  );
+}
+
+export default function HomePage({}) {
+  const [width, setWidth] = useState(-1);
+
+  useEffect(() => {
+    setWidth(window.innerWidth);
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => window.removeEventListener("resize", handleWindowResize);
+  }, []);
+
+  return (
+    <div>
+      <div className={styles.main} id="profile-section">
+        <Controls />
+        <Sections />
       </div>
     </div>
   );

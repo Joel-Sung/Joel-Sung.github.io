@@ -1,18 +1,33 @@
 .main {
   display: flex;
-  flex-direction: row;
-}
-
-.profilePic {
-  flex: 2.5;
-  width: auto;
-  height: 200px;
-  border-radius: 10%;
-  background-size: contain;
-  align-self: top;
+  flex-direction: column;
 }
 
 .description {
-  flex: 7.5;
-  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2.5vw;
+}
+
+.profilePic {
+  width: auto;
+  height: 40vh;
+  max-height: 500px;
+  border-radius: 10%;
+  background-size: contain;
+  margin-right: 2.5vw;
+}
+
+@media screen and (max-width: 1000px) {
+  .description {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .profilePic {
+    margin-right: 0;
+    margin-bottom: 2.5vw;
+    height: 40vh;
+  }
 }

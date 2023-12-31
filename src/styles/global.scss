@@ -1,21 +1,21 @@
-@use 'src/styles/variables' as v;
+@use "src/styles/variables" as v;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   color: v.$color-white;
-  background-color: v.$color-primary;
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100vh;
+  background-color: v.$color-grey;
 }
 
 a {
@@ -25,7 +25,6 @@ a {
 a:hover {
   color: v.$color-pink;
 }
-
 
 button {
   cursor: pointer;

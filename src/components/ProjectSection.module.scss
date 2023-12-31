@@ -1,4 +1,31 @@
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.project {
+  margin-bottom: 2vh;
+  transition: all 0.3s ease;
+}
+
+.container .project:nth-child(1):hover {
+  background-color: #cc1215;
+}
+.container .project:nth-child(2):hover {
+  background-color: #e69602;
+}
+.container .project:nth-child(3):hover {
+  background-color: #ccbf2b;
+}
+.container .project:nth-child(4):hover {
+  background-color: #79c314;
+}
+.container .project:nth-child(5):hover {
+  background-color: #487de7;
+}
+.container .project:nth-child(6):hover {
+  background-color: #4b369d;
+}
+.container .project:nth-child(7):hover {
+  background-color: #70369d;
 }

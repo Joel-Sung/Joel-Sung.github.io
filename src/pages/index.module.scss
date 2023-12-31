@@ -1,55 +1,64 @@
-@use 'src/styles/variables' as v;
+@use "src/styles/variables" as v;
 
-.main {  
-  height: 400px;
-  width: 800px;
+.main {
+  height: auto;
   display: flex;
+  flex-direction: column;
   background-color: v.$color-primary;
 }
 
-.sections {
-  flex: 90%;
+@media screen and (min-width: 1000px) {
+  .main {
+    width: 50vw;
+  }
 }
 
-@keyframes rise {
-  from {
-    top: 50%;
-    opacity: 0;
-  }
-  to {
-    top: 0%;
-    opacity: 1;
-  }
+.sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .section {
-  animation-name: rise;
-  animation-duration: 0.75s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-
-  position: relative;
+  width: 100%;
+  padding: 0 5vw;
+  margin-bottom: 10vh;
 }
 
 .controls {
-  flex: 10%;
+  position: sticky;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%;
+  background-color: v.$color-primary;
+  transition: all 0.2s ease-in-out;
+  top: 0;
 }
 
-$control-size: 75px;
+.hide {
+  transform: translateY(-100%);
+}
+
+$control-size: 15vw;
+$control-max-size: 100px;
 $control-radius: 50%;
-$control-margin: 10px;
-.controlInactive, .controlActive, .slider {
+$control-margin-vert: 2vh;
+$control-margin-hori: 2vw;
+.controlInactive,
+.controlActive,
+.slider {
   cursor: pointer;
   width: $control-size;
   height: $control-size;
+  max-width: $control-max-size;
+  max-height: $control-max-size;
   border-radius: $control-radius;
-  margin: $control-margin 0;
+  margin: $control-margin-vert $control-margin-hori $control-margin-vert
+    $control-margin-hori;
 }
 
-.controlInactive, .controlActive {
+.controlInactive,
+.controlActive {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,14 +72,14 @@ $control-margin: 10px;
 }
 
 .controlIcon {
-  width: 90%;
-  height: 90%;
+  width: 60%;
+  height: 60%;
   color: v.$color-white;
   z-index: 1;
 }
 
 .controlInactive:hover {
-  background-color: v.$color-light-grey;
+  background-color: v.$color-light-pink;
 }
 
 .controlActive:hover {
@@ -79,21 +88,20 @@ $control-margin: 10px;
   }
 }
 
-$shift: $control-size + $control-margin * 2;
 .controlActive.controlProfile {
   & ~ .slider {
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 }
 
 .controlActive.controlJobs {
   & ~ .slider {
-    transform: translateY($shift);
+    transform: translateX(100%) translateX($control-margin-hori * 2);
   }
 }
 
 .controlActive.controlProjects {
   & ~ .slider {
-    transform: translateY($shift * 2);
+    transform: translateX(200%) translateX($control-margin-hori * 4);
   }
 }
