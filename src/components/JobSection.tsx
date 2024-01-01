@@ -2,6 +2,7 @@ import m1Logo from "../images/m1.png";
 import yaraLogo from "../images/yara.png";
 import styles from "./JobSection.module.scss";
 import ItemCard from "./card/ItemCard";
+import ScrollContainer, { ScrollEntry } from "./container/ScrollContainer";
 
 const m1Description = [
   "Delivered end-to-end automated processes for clients to save manhours and increase work efficiency",
@@ -14,10 +15,10 @@ const yaraDescription = [
   "Wrote tests using JEST and conducted QA testing using strapi CMS",
 ];
 
-export default function JobSection({ className, id = "", ref = null }) {
+export default function JobSection({}) {
   return (
-    <div className={className} ref={ref} id={id}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <ScrollContainer type={ScrollEntry.SlideUp}>
         <ItemCard
           src={m1Logo}
           alt="M1 Limited"
@@ -27,6 +28,8 @@ export default function JobSection({ className, id = "", ref = null }) {
           location="Singapore"
           description={m1Description}
         />
+      </ScrollContainer>
+      <ScrollContainer type={ScrollEntry.SlideUp}>
         <ItemCard
           src={yaraLogo}
           alt="Yara International"
@@ -36,7 +39,7 @@ export default function JobSection({ className, id = "", ref = null }) {
           location="Singapore"
           description={yaraDescription}
         />
-      </div>
+      </ScrollContainer>
     </div>
   );
 }

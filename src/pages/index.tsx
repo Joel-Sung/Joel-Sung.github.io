@@ -39,8 +39,22 @@ function ControlButton(props: ControlButtonProps) {
 function Sections({}) {
   return (
     <div className={styles.sections}>
-      <ProfileSection className={styles.section} />
-      <JobSection className={styles.section} id="job-section" />
+      <div
+        className={`
+          ${styles.section} 
+          ${styles.fadeIn}
+        `}
+      >
+        <ProfileSection />
+      </div>
+      <div
+        className={`
+          ${styles.section} 
+        `}
+        id="job-section"
+      >
+        <JobSection />
+      </div>
       <ProjectSection className={styles.section} id="project-section" />
     </div>
   );
@@ -58,7 +72,7 @@ function Controls({}) {
     setActive(true);
   };
 
-  const [scrolledUp, setScrolledUp] = useState(false);
+  const [scrolledUp, setScrolledUp] = useState(true);
   useEffect(() => {
     let prevScrollPos = window.scrollY;
 
@@ -97,17 +111,7 @@ function Controls({}) {
   );
 }
 
-export default function HomePage({}) {
-  const [width, setWidth] = useState(-1);
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-    const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
-
+export default function HomePage() {
   return (
     <div>
       <div className={styles.main} id="profile-section">

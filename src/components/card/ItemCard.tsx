@@ -4,7 +4,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ItemCard.module.scss";
 
 interface ItemCardProps {
@@ -25,7 +25,7 @@ export default function ItemCard(props: ItemCardProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const [divHeight, setDivHeight] = useState(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (targetRef.current) {
       setDivHeight(targetRef.current.scrollHeight);
     }

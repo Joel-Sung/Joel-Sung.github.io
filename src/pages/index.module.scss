@@ -33,6 +33,7 @@
   background-color: v.$color-primary;
   transition: all 0.2s ease-in-out;
   top: 0;
+  z-index: 1;
 }
 
 .hide {
@@ -40,7 +41,7 @@
 }
 
 $control-size: 15vw;
-$control-max-size: 100px;
+$control-max-size: 75px;
 $control-radius: 50%;
 $control-margin-vert: 2vh;
 $control-margin-hori: 2vw;
@@ -53,8 +54,7 @@ $control-margin-hori: 2vw;
   max-width: $control-max-size;
   max-height: $control-max-size;
   border-radius: $control-radius;
-  margin: $control-margin-vert $control-margin-hori $control-margin-vert
-    $control-margin-hori;
+  margin: $control-margin-vert 0 $control-margin-vert $control-margin-hori;
 }
 
 .controlInactive,
@@ -96,12 +96,25 @@ $control-margin-hori: 2vw;
 
 .controlActive.controlJobs {
   & ~ .slider {
-    transform: translateX(100%) translateX($control-margin-hori * 2);
+    transform: translateX(100%) translateX($control-margin-hori);
   }
 }
 
 .controlActive.controlProjects {
   & ~ .slider {
-    transform: translateX(200%) translateX($control-margin-hori * 4);
+    transform: translateX(200%) translateX($control-margin-hori * 2);
   }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation: fade-in 1s ease-in-out;
 }

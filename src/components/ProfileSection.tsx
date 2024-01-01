@@ -14,40 +14,38 @@ const description = `
   free to scroll and explore!
 `;
 
-export default function ProfileSection({ className, id = "", ref = null }) {
+export default function ProfileSection({}) {
   return (
-    <div className={className} id={id} ref={ref}>
-      <div className={styles.main}>
-        <div className={styles.description}>
-          <Image
-            src={profilePic}
-            alt="Profile picture"
-            className={styles.profilePic}
-          />
-          <div>{description}</div>
-        </div>
-        <div className={styles.contact}>
-          <div>Contact me!</div>
-          <ul>
-            <li>
-              <FontAwesomeIcon icon={faEnvelope} /> joelsung123@gmail.com
-            </li>
-            <li>
-              {/* @ts-ignore */}
-              <FontAwesomeIcon icon={faGithub} />{" "}
-              <a href="https://github.com/Joel-Sung">
-                https://github.com/Joel-Sung
-              </a>
-            </li>
-            <li>
-              {/* @ts-ignore */}
-              <FontAwesomeIcon icon={faLinkedin} />{" "}
-              <a href="https://www.linkedin.com/in/joel-sung-568418122/">
-                https://www.linkedin.com/in/joel-sung-568418122/
-              </a>
-            </li>
-          </ul>
-        </div>
+    <div className={styles.main}>
+      <div className={styles.description}>
+        <Image
+          src={profilePic}
+          alt="Profile picture"
+          className={styles.profilePic}
+        />
+        <div>{description}</div>
+      </div>
+      <div className={styles.contact}>
+        <div>Contact me!</div>
+        <ul>
+          <li>
+            <FontAwesomeIcon icon={faEnvelope} /> joelsung123@gmail.com
+          </li>
+          <li>
+            {/* @ts-ignore */}
+            <FontAwesomeIcon icon={faGithub} />{" "}
+            <a href="https://github.com/Joel-Sung">
+              https://github.com/Joel-Sung
+            </a>
+          </li>
+          <li>
+            {/* @ts-ignore */}
+            <FontAwesomeIcon icon={faLinkedin} />{" "}
+            <a href="https://www.linkedin.com/in/joel-sung-568418122/">
+              https://www.linkedin.com/in/joel-sung-568418122/
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   );
