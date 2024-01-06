@@ -1,7 +1,8 @@
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 import styles from "./ProjectCard.module.scss";
 
 interface ProjectCardProps {
@@ -32,10 +33,12 @@ export default function ProjectCard(props: ProjectCardProps) {
 
   const [isFlipped, setIsFlipped] = useState(false);
 
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className={className}>
+    <div className={`${className} ${styles[theme]}`}>
       <div
-        className={styles.container}
+        className={`${styles.container} ${styles.hover}`}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div
@@ -53,9 +56,9 @@ export default function ProjectCard(props: ProjectCardProps) {
             <div>
               <FontAwesomeIcon icon={faGlobe} />:{" "}
               {links.map((link, index) => (
-                <span>
+                <span key={index}>
                   {index !== 0 && ", "}
-                  <a href={link} title={link} key={index}>
+                  <a href={link} title={link}>
                     {linksTo[index]}
                   </a>
                 </span>
@@ -67,6 +70,8 @@ export default function ProjectCard(props: ProjectCardProps) {
           className={`
             ${isFlipped ? styles.front : styles.back} 
             ${styles.backContainer}
+            ${styles.item}
+            ${styles.hover}
           `}
         >
           {description}

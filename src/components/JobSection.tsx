@@ -1,7 +1,7 @@
 import m1Logo from "../images/m1.png";
 import yaraLogo from "../images/yara.png";
 import styles from "./JobSection.module.scss";
-import ItemCard from "./card/ItemCard";
+import JobCard from "./card/JobCard";
 import ScrollContainer, { ScrollEntry } from "./container/ScrollContainer";
 
 const m1Description = [
@@ -18,8 +18,11 @@ const yaraDescription = [
 export default function JobSection({}) {
   return (
     <div className={styles.container}>
-      <ScrollContainer type={ScrollEntry.SlideUp}>
-        <ItemCard
+      <ScrollContainer type={ScrollEntry.SlideUp} className={styles.title}>
+        Work Experience
+      </ScrollContainer>
+      <ScrollContainer type={ScrollEntry.SlideUp} className={styles.job}>
+        <JobCard
           src={m1Logo}
           alt="M1 Limited"
           company="M1 Limited"
@@ -30,7 +33,7 @@ export default function JobSection({}) {
         />
       </ScrollContainer>
       <ScrollContainer type={ScrollEntry.SlideUp}>
-        <ItemCard
+        <JobCard
           src={yaraLogo}
           alt="Yara International"
           company="Yara International"

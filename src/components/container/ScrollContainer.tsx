@@ -10,9 +10,10 @@ interface ScrollContainerProps {
   children: any;
   type: ScrollEntry;
   threshold?: number;
+  className?: string;
 }
 export default function ScrollContainer(props: ScrollContainerProps) {
-  const { children, type, threshold = 0.5 } = props;
+  const { children, type, threshold = 0.0, className } = props;
   const animationClass =
     type == ScrollEntry.SlideUp
       ? styles.slideUp
@@ -42,7 +43,7 @@ export default function ScrollContainer(props: ScrollContainerProps) {
   }, []);
 
   return (
-    <div className={styles.hidden} ref={ref}>
+    <div className={`${styles.hidden} ${className}`} ref={ref}>
       {children}
     </div>
   );

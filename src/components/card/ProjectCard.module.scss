@@ -1,3 +1,5 @@
+@import "../../styles/themes";
+
 .container {
   position: relative;
   cursor: pointer;
@@ -33,6 +35,8 @@
 .backContainer {
   position: absolute;
   top: 0;
+  height: 100%;
+  width: 100%;
 }
 
 $image-size: 35vw;

@@ -21,7 +21,7 @@ function ProjectWrapper(props: ProjectWrapperProps) {
   );
 }
 
-export default function ProjectSection({ className, id = "", ref = null }) {
+export default function ProjectSection() {
   const spaDescription = `
   For a school project, I wrote a static program analyzer (SPA) which parses a pseudo programming 
   language. The aim of the project was to practice good software development principles and project 
@@ -44,58 +44,54 @@ export default function ProjectSection({ className, id = "", ref = null }) {
   const scrollThreshold = 0.5;
 
   return (
-    <div className={className} id={id} ref={ref}>
-      <div className={styles.container}>
-        <ProjectWrapper
-          type={ScrollEntry.SlideRight}
-          threshold={scrollThreshold}
-        >
-          <ProjectCard
-            src={nusLogo}
-            alt="SPA"
-            title="Static Program Analyzer (SPA)"
-            duration="Aug 2023 - Nov 2023"
-            type="School Project"
-            links={["https://github.com/nus-cs3203/23s1-cp-spa-team-17"]}
-            linksTo={["GitHub"]}
-            description={spaDescription}
-          />
-        </ProjectWrapper>
-        <ProjectWrapper
-          type={ScrollEntry.SlideLeft}
-          threshold={scrollThreshold}
-        >
-          <ProjectCard
-            src={akeeLogo}
-            alt="Akee"
-            title="Akee"
-            duration="Dec 2022 - Feb 2023"
-            type="Freelance"
-            links={[
-              "https://akee-ruddy.vercel.app/",
-              "https://github.com/Joel-Sung/akee-app",
-            ]}
-            linksTo={["Vercel", "GitHub"]}
-            isReverse={true}
-            description={akeeDescription}
-          />
-        </ProjectWrapper>
-        <ProjectWrapper
-          type={ScrollEntry.SlideRight}
-          threshold={scrollThreshold}
-        >
-          <ProjectCard
-            src={koiosLogo}
-            alt="Koios"
-            title="Koios"
-            duration="Nov 2022 - Feb 2023"
-            type="Freelance"
-            links={["https://github.com/koiosapp/koios-frontend"]}
-            linksTo={["GitHub"]}
-            description={koiosDescription}
-          />
-        </ProjectWrapper>
-      </div>
+    <div className={styles.container}>
+      <ScrollContainer
+        type={ScrollEntry.SlideLeft}
+        className={styles.titleContainer}
+      >
+        <div className={styles.title}>Past Projects</div>
+        <div className={styles.subtitle}>Click each row to find out more</div>
+      </ScrollContainer>
+      <ProjectWrapper type={ScrollEntry.SlideRight} threshold={scrollThreshold}>
+        <ProjectCard
+          src={nusLogo}
+          alt="SPA"
+          title="Static Program Analyzer (SPA)"
+          duration="Aug 2023 - Nov 2023"
+          type="School Project"
+          links={["https://github.com/nus-cs3203/23s1-cp-spa-team-17"]}
+          linksTo={["GitHub"]}
+          description={spaDescription}
+        />
+      </ProjectWrapper>
+      <ProjectWrapper type={ScrollEntry.SlideLeft} threshold={scrollThreshold}>
+        <ProjectCard
+          src={akeeLogo}
+          alt="Akee"
+          title="Akee"
+          duration="Dec 2022 - Feb 2023"
+          type="Freelance"
+          links={[
+            "https://akee-ruddy.vercel.app/",
+            "https://github.com/Joel-Sung/akee-app",
+          ]}
+          linksTo={["Vercel", "GitHub"]}
+          isReverse={true}
+          description={akeeDescription}
+        />
+      </ProjectWrapper>
+      <ProjectWrapper type={ScrollEntry.SlideRight} threshold={scrollThreshold}>
+        <ProjectCard
+          src={koiosLogo}
+          alt="Koios"
+          title="Koios"
+          duration="Nov 2022 - Feb 2023"
+          type="Freelance"
+          links={["https://github.com/koiosapp/koios-frontend"]}
+          linksTo={["GitHub"]}
+          description={koiosDescription}
+        />
+      </ProjectWrapper>
     </div>
   );
 }

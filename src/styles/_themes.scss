@@ -1,0 +1,79 @@
+@import "./colors";
+
+.light {
+  background-color: $primary-light;
+  color: $font-light;
+
+  .secondary {
+    background-color: $secondary-light;
+  }
+
+  .hover:hover {
+    background-color: $hover-light;
+    color: $font-light;
+  }
+
+  .item {
+    background-color: $item-light;
+  }
+
+  .border {
+    border: 1px solid $font-light;
+  }
+
+  a {
+    color: $font-light;
+  }
+
+  a:hover {
+    color: $secondary-light;
+  }
+
+  button {
+    background-color: $item-light;
+    color: $font-light;
+  }
+
+  button:hover {
+    background-color: $hover-light;
+  }
+}
+
+.dark {
+  background-color: $primary-dark;
+  color: $font-dark;
+
+  .secondary {
+    background-color: $secondary-dark;
+  }
+
+  .item {
+    background-color: $item-dark;
+  }
+
+  .hover:hover {
+    background-color: $hover-dark;
+    color: $font-dark;
+  }
+
+  .border {
+    border: 1px solid $font-dark;
+  }
+
+  a {
+    color: $font-dark;
+  }
+
+  a:hover {
+    color: $secondary-dark;
+  }
+
+  button {
+    background-color: $item-dark;
+    color: $font-dark;
+  }
+
+  button:hover {
+    background-color: $hover-dark;
+  }
+}

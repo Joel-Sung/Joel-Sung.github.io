@@ -1,16 +1,10 @@
-@use "src/styles/variables" as v;
+@import "../styles/themes";
+@import "../styles/colors";
 
 .main {
   height: auto;
   display: flex;
   flex-direction: column;
-  background-color: v.$color-primary;
-}
-
-@media screen and (min-width: 1000px) {
-  .main {
-    width: 50vw;
-  }
 }
 
 .sections {
@@ -22,25 +16,35 @@
 .section {
   width: 100%;
   padding: 0 5vw;
-  margin-bottom: 10vh;
+  margin-bottom: 5vh;
+}
+
+.navBar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5vh;
 }
 
 .controls {
-  position: sticky;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  background-color: v.$color-primary;
-  transition: all 0.2s ease-in-out;
-  top: 0;
-  z-index: 1;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
 }
 
 .hide {
   transform: translateY(-100%);
 }
 
-$control-size: 15vw;
+$control-size: min(10vh, 10vw);
 $control-max-size: 75px;
 $control-radius: 50%;
 $control-margin-vert: 2vh;
@@ -62,30 +66,21 @@ $control-margin-hori: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: v.$color-grey;
 }
 
 .slider {
   position: absolute;
   transition: transform 0.25s ease-in-out;
-  background-color: v.$color-pink;
 }
 
 .controlIcon {
   width: 60%;
   height: 60%;
-  color: v.$color-white;
-  z-index: 1;
-}
-
-.controlInactive:hover {
-  background-color: v.$color-light-pink;
+  z-index: 2;
 }
 
 .controlActive:hover {
-  & ~ .slider {
-    background-color: v.$color-light-pink;
-  }
+  z-index: 1;
 }
 
 .controlActive.controlProfile {

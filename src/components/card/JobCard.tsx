@@ -4,10 +4,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useRef, useState } from "react";
-import styles from "./ItemCard.module.scss";
+import { useContext, useEffect, useRef, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import styles from "./JobCard.module.scss";
 
-interface ItemCardProps {
+interface JobCardProps {
   src: StaticImageData;
   alt: string;
   company: string;
@@ -16,7 +17,7 @@ interface ItemCardProps {
   location: string;
   description: string[];
 }
-export default function ItemCard(props: ItemCardProps) {
+export default function JobCard(props: JobCardProps) {
   const { src, alt, company, duration, position, location, description } =
     props;
   const [showMore, setShowMore] = useState(false);
@@ -31,8 +32,10 @@ export default function ItemCard(props: ItemCardProps) {
     }
   }, [showMore]);
 
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${styles[theme]}`}>
       <div className={styles.title}>
         <Image src={src} alt={alt} className={styles.image} />
         <div className={styles.details}>
@@ -75,7 +78,7 @@ export default function ItemCard(props: ItemCardProps) {
           }
         `}</style>
         <button
-          className={styles.button}
+          className={`${styles.button} ${styles.hover}`}
           onClick={() => setShowMore(!showMore)}
         >
           <FontAwesomeIcon

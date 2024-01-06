@@ -1,11 +1,11 @@
-@use "src/styles/variables" as v;
+@import "../../styles/themes";
+@import "../../styles/colors";
 
 .container {
   display: flex;
   flex-direction: column;
-  border: 1px solid v.$color-white;
+  border: 1px solid;
   padding: 2vw;
-  margin-bottom: 2vh;
 }
 
 .title {
@@ -18,7 +18,7 @@ $image-size: 30vw;
 $image-max-size: 200px;
 .image {
   width: $image-size;
-  height: $image-size;
+  height: auto;
   max-width: $image-max-size;
   max-height: $image-max-size;
   border-radius: 5px;
@@ -36,7 +36,6 @@ $image-max-size: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -55,42 +54,63 @@ $image-max-size: 200px;
   animation-fill-mode: forwards;
 }
 
-.button {
-  background-color: v.$color-primary;
-  color: v.$color-white;
-}
-
-@keyframes glow {
-  20% {
-    color: v.$color-pink;
-  }
-  40%,
-  100% {
-    color: v.$color-white;
-  }
-}
-
 @for $i from 2 through 10 {
   .button .letter:nth-child(#{$i}) {
     animation-delay: #{$i * 0.1}s;
   }
 }
 
+@keyframes glow-dark {
+  20% {
+    color: $secondary-dark;
+  }
+  40%,
+  100% {
+    color: $font-dark;
+  }
+}
+
+@keyframes glow-light {
+  20% {
+    color: $secondary-light;
+  }
+  40%,
+  100% {
+    color: $font-light;
+  }
+}
+
 .container:hover {
   & > .body > .button > .letter {
-    animation-name: glow;
     animation-duration: 1.1s;
     animation-timing-function: ease-in;
     animation-iteration-count: infinite;
   }
+}
 
-  & > .body > .button {
-    background-color: v.$color-grey;
+.dark.container:hover {
+  & > .body > .button > .letter {
+    animation-name: glow-dark;
   }
 }
 
-.button:hover {
-  background-color: v.$color-light-grey !important;
+.light.container:hover {
+  & > .body > .button > .letter {
+    animation-name: glow-light;
+  }
+}
+
+.dark .button,
+.light .button {
+  background-color: transparent;
+}
+
+.dark .button:hover {
+  background-color: $hover-dark;
+}
+
+.light .button:hover {
+  background-color: $hover-light;
 }
 
 .button:active {

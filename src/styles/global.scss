@@ -1,4 +1,5 @@
-@use "src/styles/variables" as v;
+@import "./themes";
+@import "./colors";
 
 * {
   margin: 0;
@@ -6,24 +7,17 @@
   box-sizing: border-box;
   list-style: none;
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
+html,
 body {
   font-family: "Poppins", sans-serif;
-  font-size: 1.1rem;
-  color: v.$color-white;
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   height: 100vh;
-  background-color: v.$color-grey;
-}
-
-a {
-  color: v.$color-white;
-}
-
-a:hover {
-  color: v.$color-pink;
+  transition: all 0.25s ease;
 }
 
 button {
@@ -33,7 +27,4 @@ button {
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   border: none;
-
-  color: v.$color-primary;
-  background-color: v.$color-light-grey;
 }
