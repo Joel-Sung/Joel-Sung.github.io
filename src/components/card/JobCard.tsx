@@ -7,6 +7,7 @@ import Image, { StaticImageData } from "next/image";
 import { useContext, useEffect, useRef, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import styles from "./JobCard.module.scss";
+import SkillCard from "./SkillCard";
 
 interface JobCardProps {
   src: StaticImageData;
@@ -15,11 +16,20 @@ interface JobCardProps {
   duration: string;
   position: string;
   location: string;
+  skills: string[];
   description: string[];
 }
 export default function JobCard(props: JobCardProps) {
-  const { src, alt, company, duration, position, location, description } =
-    props;
+  const {
+    src,
+    alt,
+    company,
+    duration,
+    position,
+    location,
+    skills,
+    description,
+  } = props;
   const [showMore, setShowMore] = useState(false);
   const buttonText = showMore ? "Show less" : "Show more";
 
@@ -44,6 +54,12 @@ export default function JobCard(props: JobCardProps) {
           <div>Position: {position}</div>
           <div>Location: {location}</div>
         </div>
+      </div>
+
+      <div className={styles.skills}>
+        {skills.map((skill, index) => {
+          return <SkillCard key={index} skill={skill} />;
+        })}
       </div>
 
       <div className={styles.body}>

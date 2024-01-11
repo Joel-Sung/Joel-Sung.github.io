@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import styles from "./ProjectCard.module.scss";
+import SkillCard from "./SkillCard";
 
 interface ProjectCardProps {
   src: StaticImageData;
@@ -13,6 +14,7 @@ interface ProjectCardProps {
   type: string;
   links: string[];
   linksTo: string[];
+  skills: string[];
   description: string;
   className?: string;
   isReverse?: boolean;
@@ -26,6 +28,7 @@ export default function ProjectCard(props: ProjectCardProps) {
     type,
     links,
     linksTo,
+    skills,
     description,
     className,
     isReverse = false,
@@ -38,34 +41,48 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div className={`${className} ${styles[theme]}`}>
       <div
-        className={`${styles.container} ${styles.hover}`}
+        className={styles.container}
         onClick={() => setIsFlipped(!isFlipped)}
       >
         <div
           className={`
             ${isFlipped ? styles.back : styles.front} 
             ${styles.frontContainer}
-            ${isReverse && styles.frontR}
+            ${styles.hover}
           `}
         >
-          <Image src={src} alt={alt} className={styles.image} />
-          <div className={styles.details}>
-            <div>Title: {title}</div>
-            <div>Duration: {duration}</div>
-            <div>Type: {type}</div>
-            <div>
-              <FontAwesomeIcon icon={faGlobe} />:{" "}
-              {links.map((link, index) => (
-                <span key={index}>
-                  {index !== 0 && ", "}
-                  <a href={link} title={link}>
-                    {linksTo[index]}
-                  </a>
-                </span>
-              ))}
+          <div
+            className={`
+              ${styles.detailsContainer}
+              ${isReverse && styles.frontR}
+            `}
+          >
+            <Image src={src} alt={alt} className={styles.image} />
+            <div className={styles.details}>
+              <div>Title: {title}</div>
+              <div>Duration: {duration}</div>
+              <div>Type: {type}</div>
+              <div>
+                <FontAwesomeIcon icon={faGlobe} />:{" "}
+                {links.map((link, index) => (
+                  <span key={index}>
+                    {index !== 0 && ", "}
+                    <a href={link} title={link}>
+                      {linksTo[index]}
+                    </a>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
+
+          <div className={styles.skills}>
+            {skills.map((skill, index) => {
+              return <SkillCard key={index} skill={skill} />;
+            })}
+          </div>
         </div>
+
         <div
           className={`
             ${isFlipped ? styles.front : styles.back} 

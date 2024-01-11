@@ -13,12 +13,23 @@
     color: $font-light;
   }
 
-  .item {
+  .item,
+  &.item {
     background-color: $item-light;
   }
 
   .border {
     border: 1px solid $font-light;
+  }
+
+  .themeBgTranslucent,
+  &.themeBgTranslucent {
+    background-color: $translucent-light;
+  }
+
+  .themeColorFont,
+  &.themeColorFont {
+    color: $color-light;
   }
 
   a {
@@ -47,7 +58,8 @@
     background-color: $secondary-dark;
   }
 
-  .item {
+  .item,
+  &.item {
     background-color: $item-dark;
   }
 
@@ -58,6 +70,16 @@
 
   .border {
     border: 1px solid $font-dark;
+  }
+
+  .themeBgTranslucent,
+  &.themeBgTranslucent {
+    background-color: $translucent-dark;
+  }
+
+  .themeColorFont,
+  &.themeColorFont {
+    color: $color-dark;
   }
 
   a {

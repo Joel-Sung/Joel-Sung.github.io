@@ -3,6 +3,7 @@ import koiosLogo from "../images/koios.png";
 import nusLogo from "../images/nus.png";
 import styles from "./ProjectSection.module.scss";
 import ProjectCard from "./card/ProjectCard";
+import TitleCard from "./card/TitleCard";
 import ScrollContainer, { ScrollEntry } from "./container/ScrollContainer";
 
 interface ProjectWrapperProps {
@@ -45,12 +46,11 @@ export default function ProjectSection() {
 
   return (
     <div className={styles.container}>
-      <ScrollContainer
-        type={ScrollEntry.SlideLeft}
-        className={styles.titleContainer}
-      >
-        <div className={styles.title}>Past Projects</div>
-        <div className={styles.subtitle}>Click each row to find out more</div>
+      <ScrollContainer type={ScrollEntry.SlideLeft}>
+        <TitleCard
+          title="Past Projects"
+          subtitle="Click each row to find out more"
+        />
       </ScrollContainer>
       <ProjectWrapper type={ScrollEntry.SlideRight} threshold={scrollThreshold}>
         <ProjectCard
@@ -61,6 +61,13 @@ export default function ProjectSection() {
           type="School Project"
           links={["https://github.com/nus-cs3203/23s1-cp-spa-team-17"]}
           linksTo={["GitHub"]}
+          skills={[
+            "C++",
+            "Jira",
+            "Project Management",
+            "Teamwork",
+            "SWE Principles",
+          ]}
           description={spaDescription}
         />
       </ProjectWrapper>
@@ -77,6 +84,7 @@ export default function ProjectSection() {
           ]}
           linksTo={["Vercel", "GitHub"]}
           isReverse={true}
+          skills={["Next.js", "Chart.js", "Web Development"]}
           description={akeeDescription}
         />
       </ProjectWrapper>
@@ -89,6 +97,7 @@ export default function ProjectSection() {
           type="Freelance"
           links={["https://github.com/koiosapp/koios-frontend"]}
           linksTo={["GitHub"]}
+          skills={["Next.js", "MUI", "Web Development"]}
           description={koiosDescription}
         />
       </ProjectWrapper>

@@ -1,0 +1,17 @@
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 1vh;
+  text-align: center;
+}
+
+.subtitle {
+  margin-bottom: 5vh;
+  text-align: center;
+}

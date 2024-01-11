@@ -1,0 +1,12 @@
+@import "../../styles/themes";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh 2vw;
+}
+
+.title,
+.duration {
+  margin-bottom: 2vh;
+}

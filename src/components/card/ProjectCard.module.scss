@@ -24,7 +24,7 @@
 
 .frontContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .frontR {
@@ -50,8 +50,20 @@ $image-max-size: 200px;
   margin-right: 2vw;
 }
 
+.detailsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
 .details {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2vh;
 }

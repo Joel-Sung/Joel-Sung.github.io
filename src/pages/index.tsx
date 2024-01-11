@@ -2,10 +2,12 @@ import {
   faBriefcase,
   faLightbulb,
   faUser,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useContext, useEffect, useRef, useState } from "react";
+import ActivitiesSection from "../components/ActivitiesSection";
 import JobSection from "../components/JobSection";
 import ProfileSection from "../components/ProfileSection";
 import ProjectSection from "../components/ProjectSection";
@@ -43,11 +45,13 @@ export default function HomePage() {
   const [profileActive, setProfileActive] = useState(true);
   const [jobsActive, setJobsActive] = useState(false);
   const [projectsActive, setProjectsActive] = useState(false);
+  const [activitiesActive, setActivitiesActive] = useState(false);
 
   const changeActive = (setActive: (state: boolean) => void) => {
     setProfileActive(false);
     setJobsActive(false);
     setProjectsActive(false);
+    setActivitiesActive(false);
     setActive(true);
   };
 
@@ -65,6 +69,7 @@ export default function HomePage() {
   const profileRef = useRef(null);
   const jobRef = useRef(null);
   const projectRef = useRef(null);
+  const activitiesRef = useRef(null);
 
   const [mounted, setMounted] = useState(false);
 
@@ -73,12 +78,19 @@ export default function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            if (entry.target.id == "profile-section") {
-              changeActive(setProfileActive);
-            } else if (entry.target.id == "job-section") {
-              changeActive(setJobsActive);
-            } else if (entry.target.id == "project-section") {
-              changeActive(setProjectsActive);
+            switch (entry.target.id) {
+              case "profile-section":
+                changeActive(setProfileActive);
+                break;
+              case "job-section":
+                changeActive(setJobsActive);
+                break;
+              case "project-section":
+                changeActive(setProjectsActive);
+                break;
+              case "activities-section":
+                changeActive(setActivitiesActive);
+                break;
             }
           }
         });
@@ -92,6 +104,7 @@ export default function HomePage() {
       observer.observe(profileRef.current);
       observer.observe(jobRef.current);
       observer.observe(projectRef.current);
+      observer.observe(activitiesRef.current);
     }
   }, []);
 
@@ -136,6 +149,13 @@ export default function HomePage() {
             stylesId={styles.controlProjects}
             icon={faLightbulb}
           />
+          <ControlButton
+            href="#activities-section"
+            onClick={() => changeActive(setActivitiesActive)}
+            isActive={activitiesActive}
+            stylesId={styles.controlProjects}
+            icon={faUsers}
+          />
           <span
             className={`${styles.slider} ${styles.item} ${styles.hover}`}
           ></span>
@@ -157,6 +177,13 @@ export default function HomePage() {
         </div>
         <div className={styles.section} id="project-section" ref={projectRef}>
           <ProjectSection />
+        </div>
+        <div
+          className={styles.section}
+          id="activities-section"
+          ref={activitiesRef}
+        >
+          <ActivitiesSection />
         </div>
       </div>
     </div>
