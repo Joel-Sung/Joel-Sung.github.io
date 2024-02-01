@@ -1,9 +1,17 @@
+import { forwardRef } from "react";
 import m1Logo from "../images/m1.png";
+import mjLogo from "../images/mj.png";
 import yaraLogo from "../images/yara.png";
 import styles from "./JobSection.module.scss";
 import JobCard from "./card/JobCard";
 import TitleCard from "./card/TitleCard";
 import ScrollContainer, { ScrollEntry } from "./container/ScrollContainer";
+
+const mjDescription = [
+  "Collaborate with product managers and tech leads to support application engineering teams",
+  "Work on the Mighty Jaxx website using Next.js, HTML and CSS",
+  "Develop backend services using Node.js and test scripts using Javascript",
+];
 
 const m1Description = [
   "Delivered end-to-end automated processes for clients to save manhours and increase work efficiency",
@@ -16,13 +24,37 @@ const yaraDescription = [
   "Wrote tests using JEST and conducted QA testing using strapi CMS",
 ];
 
-export default function JobSection({}) {
+interface JobSectionProps {
+  id: string;
+  className?: string;
+}
+const JobSection = forwardRef<HTMLDivElement, JobSectionProps>(function (
+  { id, className = "" }: JobSectionProps,
+  ref
+) {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${className}`} ref={ref} id={id}>
       <ScrollContainer type={ScrollEntry.SlideUp} className={styles.title}>
         <TitleCard
           title="Work Experiences"
           subtitle="My past professional experiences"
+        />
+      </ScrollContainer>
+      <ScrollContainer type={ScrollEntry.SlideUp} className={styles.job}>
+        <JobCard
+          src={mjLogo}
+          alt="Mighty Jaxx"
+          company="Mighty Jaxx"
+          duration="Jan 2024 - Current"
+          position="Software Engineer Intern"
+          location="Singapore"
+          skills={[
+            "Next.js",
+            "Node.js",
+            "Web Development",
+            "Business Communication",
+          ]}
+          description={mjDescription}
         />
       </ScrollContainer>
       <ScrollContainer type={ScrollEntry.SlideUp} className={styles.job}>
@@ -63,4 +95,6 @@ export default function JobSection({}) {
       </ScrollContainer>
     </div>
   );
-}
+});
+
+export default JobSection;

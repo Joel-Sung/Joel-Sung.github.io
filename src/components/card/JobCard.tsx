@@ -94,7 +94,7 @@ export default function JobCard(props: JobCardProps) {
           }
         `}</style>
         <button
-          className={`${styles.button} ${styles.hover}`}
+          className={`${styles.button}`}
           onClick={() => setShowMore(!showMore)}
         >
           <FontAwesomeIcon

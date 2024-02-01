@@ -11,7 +11,7 @@
 .title {
   display: flex;
   flex-direction: row;
-  margin-bottom: 2vh;
+  margin-bottom: 30px;
 }
 
 $image-size: 30vw;
@@ -42,6 +42,7 @@ $image-max-size: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 20px;
 }
 
 @keyframes fadeIn {
@@ -54,7 +55,7 @@ $image-max-size: 200px;
 }
 
 .bulletPoint {
-  margin-bottom: 1vh;
+  margin-bottom: 20px;
   opacity: 0;
   animation: fadeIn 0.5s ease 0.15s;
   animation-fill-mode: forwards;
@@ -68,7 +69,7 @@ $image-max-size: 200px;
 
 @keyframes glow-dark {
   20% {
-    color: $secondary-dark;
+    color: $color-dark;
   }
   40%,
   100% {
@@ -78,7 +79,7 @@ $image-max-size: 200px;
 
 @keyframes glow-light {
   20% {
-    color: $secondary-light;
+    color: $color-light;
   }
   40%,
   100% {
@@ -112,11 +113,11 @@ $image-max-size: 200px;
 }
 
 .dark .button:hover {
-  background-color: $hover-dark;
+  background-color: $secondary-dark;
 }
 
 .light .button:hover {
-  background-color: $hover-light;
+  background-color: $secondary-light;
 }
 
 .button:active {

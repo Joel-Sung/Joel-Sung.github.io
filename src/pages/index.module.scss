@@ -1,11 +1,17 @@
 @import "../styles/themes";
 @import "../styles/colors";
 
-.main {
+.background {
+  width: 100vw;
   height: auto;
   display: flex;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
   flex-direction: column;
-  width: 100vw;
+  max-width: 1000px;
 }
 
 .sections {
@@ -17,89 +23,11 @@
 .section {
   width: 100%;
   padding: 0 5vw;
-  margin-bottom: 5vh;
-}
-
-.navBar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 5vh;
-}
-
-.controls {
-  display: flex;
-  flex-direction: row;
-}
-
-.toggle {
-  display: flex;
-  align-items: center;
+  margin-bottom: 50px;
 }
 
 .hide {
   transform: translateY(-100%);
-}
-
-$control-size: min(10vh, 10vw);
-$control-max-size: 75px;
-$control-radius: 50%;
-$control-margin-vert: 2vh;
-$control-margin-hori: 2vw;
-.controlInactive,
-.controlActive,
-.slider {
-  cursor: pointer;
-  width: $control-size;
-  height: $control-size;
-  max-width: $control-max-size;
-  max-height: $control-max-size;
-  border-radius: $control-radius;
-  margin: $control-margin-vert 0 $control-margin-vert $control-margin-hori;
-}
-
-.controlInactive,
-.controlActive {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.slider {
-  position: absolute;
-  transition: transform 0.25s ease-in-out;
-}
-
-.controlIcon {
-  width: 60%;
-  height: 60%;
-  z-index: 2;
-}
-
-.controlActive:hover {
-  z-index: 1;
-}
-
-.controlActive.controlProfile {
-  & ~ .slider {
-    transform: translateX(0%);
-  }
-}
-
-.controlActive.controlJobs {
-  & ~ .slider {
-    transform: translateX(100%) translateX($control-margin-hori);
-  }
-}
-
-.controlActive.controlProjects {
-  & ~ .slider {
-    transform: translateX(200%) translateX($control-margin-hori * 2);
-  }
 }
 
 @keyframes fade-in {

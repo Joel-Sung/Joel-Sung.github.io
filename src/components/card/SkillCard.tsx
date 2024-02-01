@@ -10,7 +10,7 @@ export default function SkillCard({ skill }) {
       className={`
         ${styles[theme]}
         ${styles.container}
-        ${styles.item}
+        ${styles.themeItem}
     `}
     >
       {skill}

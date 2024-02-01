@@ -1,0 +1,47 @@
+@import "../../styles/themes";
+@import "../../styles/colors";
+
+.container {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 5vw;
+}
+
+.dark .header {
+  background-color: $primary-dark;
+}
+
+.light .header {
+  background-color: $primary-light;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+$menu-icon-size: 35px;
+.menuIcon {
+  width: $menu-icon-size;
+  height: $menu-icon-size;
+  z-index: 2;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.sectionName {
+  font-size: 2rem;
+}

@@ -48,7 +48,7 @@ export default function ProjectCard(props: ProjectCardProps) {
           className={`
             ${isFlipped ? styles.back : styles.front} 
             ${styles.frontContainer}
-            ${styles.hover}
+            ${styles.themeHover}
           `}
         >
           <div
@@ -87,7 +87,8 @@ export default function ProjectCard(props: ProjectCardProps) {
           className={`
             ${isFlipped ? styles.front : styles.back} 
             ${styles.backContainer}
-            ${styles.item}
+            ${styles.themeItem}
+            ${styles.themeHover}
             ${styles.hover}
           `}
         >

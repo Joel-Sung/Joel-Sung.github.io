@@ -1,21 +1,40 @@
-.main {
+.container {
   display: flex;
   flex-direction: column;
 }
 
 .profilePic {
   width: auto;
-  height: 40vh;
+  height: 300px;
   max-height: 500px;
   border-radius: 10%;
   background-size: contain;
   margin-bottom: 2.5vh;
 }
 
-.description {
+.pictureContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-bottom: 2.5vh;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .pictureContainer {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2.5vw;
+  }
+
+  .introduction {
+    margin-top: 20px;
+  }
 }

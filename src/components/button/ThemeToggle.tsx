@@ -2,9 +2,9 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import styles from "./ToggleButton.module.scss";
+import styles from "./ThemeToggle.module.scss";
 
-export default function ToggleButton() {
+export default function ThemeToggle() {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
@@ -28,7 +28,7 @@ export default function ToggleButton() {
       >
         <FontAwesomeIcon icon={faMoon} className={styles.icon} />
       </div>
-      <span className={`${styles.slider} ${styles.secondary}`} />
+      <span className={`${styles.slider} ${styles.themeSecondary}`} />
     </button>
   );
 }

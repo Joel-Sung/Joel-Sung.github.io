@@ -1,0 +1,90 @@
+@import "../../styles/themes";
+@import "../../styles/colors";
+
+.container {
+  position: relative;
+}
+
+.navMenu {
+  position: absolute;
+  padding: 0.5rem 7vw;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transform-origin: top left;
+  transform: scale(0, 0);
+  transition: all 0.3s ease-in-out;
+}
+
+.dark .navMenu {
+  background-color: $primary-dark;
+}
+
+.light .navMenu {
+  background-color: $primary-light;
+}
+
+.open {
+  transform: scale(1, 1);
+}
+
+.menuItem {
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menuItem:focus {
+  text-decoration: none;
+}
+
+.menuItem:hover {
+  & .bulletPoint {
+    transform: translateX(-4px);
+  }
+  & .itemLine {
+    width: 50px;
+  }
+  .light & {
+    color: $hover-light;
+  }
+  .light & .itemLine,
+  .light & .bulletPoint {
+    background-color: $hover-light;
+  }
+  .dark & {
+    color: $hover-dark;
+  }
+  .dark & .itemLine,
+  .dark & .bulletPoint {
+    background-color: $hover-dark;
+  }
+  text-decoration: none;
+}
+
+.itemLine {
+  transition: all 0.3s ease-in-out;
+  height: 5px;
+}
+
+.itemLineFull {
+  width: 50px;
+}
+
+.itemLineEmpty {
+  width: 0;
+}
+
+.bulletPoint {
+  height: 10px;
+  width: 10px;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+.shift {
+  transform: translateX(-4px);
+}

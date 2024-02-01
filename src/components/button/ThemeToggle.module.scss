@@ -10,10 +10,10 @@
   padding: 0;
   overflow-x: visible;
   border-radius: 25%/50%;
-  margin-right: 5vw;
 }
 
-$toggle-size: min(10vh, 10vw);
+$toggle-size: min(5vh, 5vw);
+$toggle-min-size: 35px;
 $toggle-max-size: 75px;
 .toggleOne,
 .toggleTwo,
@@ -21,6 +21,8 @@ $toggle-max-size: 75px;
   cursor: pointer;
   width: $toggle-size;
   height: $toggle-size;
+  min-width: $toggle-min-size;
+  min-height: $toggle-min-size;
   max-width: $toggle-max-size;
   max-height: $toggle-max-size;
   border-radius: 100%;
