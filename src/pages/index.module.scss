@@ -1,4 +1,3 @@
-@import "../styles/themes";
 @import "../styles/colors";
 
 .background {
@@ -6,6 +5,7 @@
   height: auto;
   display: flex;
   justify-content: center;
+  background-color: $primary;
 }
 
 .main {
@@ -22,8 +22,11 @@
 
 .section {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
   padding: 0 5vw;
-  margin-bottom: 50px;
 }
 
 .hide {

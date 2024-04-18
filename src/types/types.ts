@@ -1,6 +1,6 @@
 export enum Sections {
-  PROFILE = "Profile",
+  ABOUT = "About",
   JOBS = "Jobs",
   PROJECTS = "Projects",
   ACTIVITIES = "Activities",
-};
+}

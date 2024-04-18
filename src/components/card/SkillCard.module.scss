@@ -1,9 +1,13 @@
-@import "../../styles/themes";
+@import "../../styles/colors.scss";
 
 .container {
   border-radius: 1rem;
-  margin-right: 1vw;
-  margin-bottom: 1vh;
-  padding: 1vh 2vw;
+  padding: 0.5rem 1rem;
+  background-color: $pink;
+}
+
+.skill {
+  color: $white;
+  font-weight: 700;
   font-size: 0.8rem;
 }

@@ -20,7 +20,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/context/ThemeContext.ts"
   ],
   "exclude": ["node_modules"]
 }

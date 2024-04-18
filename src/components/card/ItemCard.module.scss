@@ -1,0 +1,49 @@
+@import "../../styles/colors";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  gap: 8px;
+  border-radius: 1.5rem;
+  text-decoration: none;
+}
+
+.container:hover {
+  background-color: $faded-pink;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  color: $grey;
+}
+
+.linkIcon {
+  font-size: 1rem;
+}
+
+.company {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $white;
+}
+
+.position {
+  color: $grey;
+}
+
+.description {
+  margin: 12px 0;
+  color: $white;
+}
+
+.skills {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

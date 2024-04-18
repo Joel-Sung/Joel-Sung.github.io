@@ -1,24 +1,21 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import ActivitiesSection from "../components/ActivitiesSection";
-import JobSection from "../components/JobSection";
-import ProfileSection from "../components/ProfileSection";
-import ProjectSection from "../components/ProjectSection";
-import { ThemeContext } from "../context/ThemeContext";
+import { useEffect, useRef, useState } from "react";
 import NavBar from "../features/navBar/NavBar";
+import AboutSection from "../features/section/AboutSection";
+import ActivitiesSection from "../features/section/ActivitiesSection";
+import JobSection from "../features/section/JobSection";
+import ProjectSection from "../features/section/ProjectSection";
 import { Sections } from "../types/types";
 import styles from "./index.module.scss";
 
 export default function HomePage() {
-  const [sectionActive, setSectionActive] = useState<Sections>(
-    Sections.PROFILE
-  );
+  const [sectionActive, setSectionActive] = useState<Sections>(Sections.ABOUT);
 
-  const profileRef = useRef(null);
+  const aboutRef = useRef(null);
   const jobRef = useRef(null);
   const projectRef = useRef(null);
   const activitiesRef = useRef(null);
 
-  const profileId = "profile-section";
+  const aboutId = "about-section";
   const jobId = "jobs-section";
   const projectId = "projects-section";
   const activitiesId = "activities-section";
@@ -35,8 +32,8 @@ export default function HomePage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             switch (entry.target.id) {
-              case profileId:
-                setSectionActive(Sections.PROFILE);
+              case aboutId:
+                setSectionActive(Sections.ABOUT);
                 break;
               case jobId:
                 setSectionActive(Sections.JOBS);
@@ -57,7 +54,7 @@ export default function HomePage() {
     );
 
     if (mounted) {
-      observer.observe(profileRef.current);
+      observer.observe(aboutRef.current);
       observer.observe(jobRef.current);
       observer.observe(projectRef.current);
       observer.observe(activitiesRef.current);
@@ -68,17 +65,15 @@ export default function HomePage() {
     return null;
   }
 
-  const { theme } = useContext(ThemeContext);
-
   return (
-    <div className={`${styles.background} ${styles[theme]}`}>
-      <div className={`${styles.main}`}>
+    <div className={styles.background}>
+      <div className={styles.main}>
         <NavBar sectionActive={sectionActive} />
         <div className={styles.sections}>
-          <ProfileSection
-            id={profileId}
-            ref={profileRef}
-            className={`${styles.section} ${styles.fadeIn}`}
+          <AboutSection
+            id={aboutId}
+            ref={aboutRef}
+            className={styles.section}
           />
           <JobSection id={jobId} ref={jobRef} className={styles.section} />
           <ProjectSection

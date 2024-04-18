@@ -1,27 +1,15 @@
 import { useEffect, useRef } from "react";
 import styles from "./ScrollContainer.module.scss";
 
-export enum ScrollEntry {
-  SlideUp,
-  SlideRight,
-  SlideLeft,
-}
 interface ScrollContainerProps {
   children: any;
-  type: ScrollEntry;
+  type?: "slideUp" | "fadeIn";
   threshold?: number;
   className?: string;
 }
+
 export default function ScrollContainer(props: ScrollContainerProps) {
-  const { children, type, threshold = 0.0, className } = props;
-  const animationClass =
-    type == ScrollEntry.SlideUp
-      ? styles.slideUp
-      : type == ScrollEntry.SlideRight
-      ? styles.slideRight
-      : type == ScrollEntry.SlideLeft
-      ? styles.slideLeft
-      : undefined;
+  const { children, threshold = 0.0, type = "slideUp", className } = props;
 
   const ref = useRef(null);
 
@@ -30,7 +18,13 @@ export default function ScrollContainer(props: ScrollContainerProps) {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add(animationClass);
+            switch (type) {
+              case "fadeIn":
+                entry.target.classList.add(styles.fadeIn);
+                break;
+              default:
+                entry.target.classList.add(styles.slideUp);
+            }
           }
         });
       },

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
 import { Sections } from "../../types/types";
 import styles from "./NavMenu.module.scss";
 
@@ -49,15 +47,8 @@ export const NavMenu = ({
   currentSection,
   onMenuClick,
 }: NavMenuProps) => {
-  const { theme } = useContext(ThemeContext);
-
   return (
-    <div
-      className={`
-        ${styles.container}  
-        ${styles[theme]} 
-      `}
-    >
+    <div className={styles.container}>
       <div
         className={`
           ${styles.navMenu} 
@@ -65,9 +56,9 @@ export const NavMenu = ({
         `}
       >
         <MenuItem
-          href="#profile-section"
-          title="Profile"
-          isActive={currentSection === Sections.PROFILE}
+          href="#about-section"
+          title="About"
+          isActive={currentSection === Sections.ABOUT}
           onClick={onMenuClick}
         />
         <MenuItem
