@@ -5,8 +5,6 @@ import Image from "next/image";
 import { forwardRef } from "react";
 import ScrollContainer from "../../components/container/ScrollContainer";
 import useIsMobile from "../../hooks/useIsMobile";
-import profilePic from "../../images/me.jpg";
-import { ABOUT_DESCRIPTION } from "../../utils/constants";
 import styles from "./AboutSection.module.scss";
 
 const ContactSection = () => {
@@ -17,14 +15,12 @@ const ContactSection = () => {
         <FontAwesomeIcon icon={faEnvelope} /> {"joelsung123@gmail.com"}
       </div>
       <div>
-        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faGithub} />{" "}
         <a href="https://github.com/Joel-Sung">
           {"https://github.com/Joel-Sung"}
         </a>
       </div>
       <div>
-        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faLinkedin} />{" "}
         <a href="https://www.linkedin.com/in/joel-sung-568418122/">
           {"https://www.linkedin.com/in/joel-sung-568418122/"}
@@ -37,10 +33,12 @@ const ContactSection = () => {
 interface AboutSectionProps {
   id: string;
   className?: string;
+  description: string;
+  image: string;
 }
 
 const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
-  { id, className = "" }: AboutSectionProps,
+  { id, className = "", description, image }: AboutSectionProps,
   ref
 ) {
   const isMobile = useIsMobile();
@@ -50,12 +48,14 @@ const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
       <ScrollContainer type="fadeIn">
         <div className={styles.pictureContainer}>
           <Image
-            src={profilePic}
+            src={image}
             alt="Profile picture"
             className={styles.profilePic}
+            width={200}
+            height={300}
           />
           <div className={styles.introduction}>
-            {ABOUT_DESCRIPTION}
+            {description}
             {!isMobile && <ContactSection />}
           </div>
         </div>

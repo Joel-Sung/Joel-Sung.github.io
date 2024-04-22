@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   output: 'export',
   images: {
+    domains: ['cdn.sanity.com'],
     unoptimized: true
   },
   sassOptions: {

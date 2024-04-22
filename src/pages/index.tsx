@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { fetchAbout, fetchSections } from "../../sanity/api";
+import { AboutDocument, SectionDocument } from "../../sanity/types";
 import NavBar from "../features/navBar/NavBar";
 import AboutSection from "../features/section/AboutSection";
-import ActivitiesSection from "../features/section/ActivitiesSection";
-import JobSection from "../features/section/JobSection";
-import ProjectSection from "../features/section/ProjectSection";
+import Section from "../features/section/Section";
 import { Sections } from "../types/types";
 import styles from "./index.module.scss";
 
@@ -22,8 +22,35 @@ export default function HomePage() {
 
   const [mounted, setMounted] = useState(false);
 
+  const [aboutSection, setAboutSection] = useState<AboutDocument | null>(null);
+
+  const [jobSection, setJobSection] = useState<SectionDocument | null>(null);
+  const [projectSection, setProjectSection] = useState<SectionDocument | null>(
+    null
+  );
+  const [activitiesSection, setActivitiesSection] =
+    useState<SectionDocument | null>(null);
+
   useEffect(() => {
     setMounted(true);
+
+    const fetchData = async () => {
+      const about = await fetchAbout();
+      setAboutSection(about);
+
+      const sections = await fetchSections();
+
+      setJobSection(
+        sections.find((section) => section.title === "Work Experiences")
+      );
+      setProjectSection(
+        sections.find((section) => section.title === "Past Projects")
+      );
+      setActivitiesSection(
+        sections.find((section) => section.title === "Co-Curricular Activities")
+      );
+    };
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -71,20 +98,38 @@ export default function HomePage() {
         <NavBar sectionActive={sectionActive} />
         <div className={styles.sections}>
           <AboutSection
+            className={styles.section}
+            description={aboutSection?.description || ""}
+            image={aboutSection?.imageUrl || ""}
             id={aboutId}
             ref={aboutRef}
-            className={styles.section}
           />
-          <JobSection id={jobId} ref={jobRef} className={styles.section} />
-          <ProjectSection
+
+          <Section
+            id={jobId}
+            ref={jobRef}
+            className={styles.section}
+            title={jobSection?.title || ""}
+            subtitle={jobSection?.subtitle || ""}
+            cards={jobSection?.cards || []}
+          />
+
+          <Section
             id={projectId}
             ref={projectRef}
             className={styles.section}
+            title={projectSection?.title || ""}
+            subtitle={projectSection?.subtitle || ""}
+            cards={projectSection?.cards || []}
           />
-          <ActivitiesSection
+
+          <Section
             id={activitiesId}
             ref={activitiesRef}
             className={styles.section}
+            title={activitiesSection?.title || ""}
+            subtitle={activitiesSection?.subtitle || ""}
+            cards={activitiesSection?.cards || []}
           />
         </div>
       </div>

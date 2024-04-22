@@ -38,11 +38,13 @@ export default function ItemCard({
         <div className={styles.position}>{position}</div>
         <div className={styles.description}>{description}</div>
 
-        <div className={styles.skills}>
-          {skills.map((skill, index) => {
-            return <SkillCard key={index} skill={skill} />;
-          })}
-        </div>
+        {skills && skills.length > 0 && (
+          <div className={styles.skills}>
+            {skills.map((skill, index) => {
+              return <SkillCard key={index} skill={skill} />;
+            })}
+          </div>
+        )}
       </a>
     </ScrollContainer>
   );
