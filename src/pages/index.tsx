@@ -12,19 +12,22 @@ export default function HomePage() {
 
   const aboutRef = useRef(null);
   const jobRef = useRef(null);
+  const educationRef = useRef(null);
   const projectRef = useRef(null);
   const activitiesRef = useRef(null);
 
   const aboutId = "about-section";
   const jobId = "jobs-section";
+  const educationId = "education-section";
   const projectId = "projects-section";
   const activitiesId = "activities-section";
 
   const [mounted, setMounted] = useState(false);
 
   const [aboutSection, setAboutSection] = useState<AboutDocument | null>(null);
-
   const [jobSection, setJobSection] = useState<SectionDocument | null>(null);
+  const [educationSection, setEducationSection] =
+    useState<SectionDocument | null>(null);
   const [projectSection, setProjectSection] = useState<SectionDocument | null>(
     null
   );
@@ -42,6 +45,9 @@ export default function HomePage() {
 
       setJobSection(
         sections.find((section) => section.title === "Work Experiences")
+      );
+      setEducationSection(
+        sections.find((section) => section.title === "Education")
       );
       setProjectSection(
         sections.find((section) => section.title === "Past Projects")
@@ -65,6 +71,9 @@ export default function HomePage() {
               case jobId:
                 setSectionActive(Sections.JOBS);
                 break;
+              case educationId:
+                setSectionActive(Sections.EDUCATION);
+                break;
               case projectId:
                 setSectionActive(Sections.PROJECTS);
                 break;
@@ -83,6 +92,7 @@ export default function HomePage() {
     if (mounted) {
       observer.observe(aboutRef.current);
       observer.observe(jobRef.current);
+      observer.observe(educationRef.current);
       observer.observe(projectRef.current);
       observer.observe(activitiesRef.current);
     }
@@ -112,6 +122,15 @@ export default function HomePage() {
             title={jobSection?.title || ""}
             subtitle={jobSection?.subtitle || ""}
             cards={jobSection?.cards || []}
+          />
+
+          <Section
+            id={educationId}
+            ref={educationRef}
+            className={styles.section}
+            title={educationSection?.title || ""}
+            subtitle={educationSection?.subtitle || ""}
+            cards={educationSection?.cards || []}
           />
 
           <Section

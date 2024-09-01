@@ -68,6 +68,12 @@ export const NavMenu = ({
           onClick={onMenuClick}
         />
         <MenuItem
+          href="#education-section"
+          title="Education"
+          isActive={currentSection === Sections.EDUCATION}
+          onClick={onMenuClick}
+        />
+        <MenuItem
           href="#projects-section"
           title="Projects"
           isActive={currentSection === Sections.PROJECTS}
