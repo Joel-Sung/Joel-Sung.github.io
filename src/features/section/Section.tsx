@@ -1,22 +1,25 @@
 import { forwardRef } from "react";
-import { Card } from "../../../sanity/types";
+import { SectionDocument } from "../../../sanity/types";
 import ItemCard from "../../components/card/ItemCard";
 import TitleCard from "../../components/card/TitleCard";
+import styles from "./Section.module.scss";
 
 interface SectionProps {
   id: string;
   className?: string;
-  title: string;
-  subtitle: string;
-  cards: Card[];
+  section: SectionDocument;
 }
 
 const Section = forwardRef<HTMLDivElement, SectionProps>(function (
-  { id, className = "", title, subtitle, cards }: SectionProps,
+  { id, className = "", section }: SectionProps,
   ref
 ) {
+  const title = section?.title || "";
+  const subtitle = section?.subtitle || "";
+  const cards = section?.cards || [];
+
   return (
-    <div className={className} ref={ref} id={id}>
+    <div className={`${className} ${styles.section} section`} ref={ref} id={id}>
       <TitleCard title={title} subtitle={subtitle} />
 
       {cards.length > 0 &&

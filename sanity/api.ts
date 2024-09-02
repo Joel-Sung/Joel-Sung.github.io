@@ -3,8 +3,7 @@ import { AboutDocument, SectionDocument } from "./types";
 
 const ABOUT_QUERY = `
   *[_type == "about"][0] {
-    description,
-    "imageUrl": image.asset->url
+    description
   }
 `;
 const SECTION_QUERY = `*[_type == "section"]`;

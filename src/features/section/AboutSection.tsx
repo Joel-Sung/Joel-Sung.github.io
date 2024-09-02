@@ -6,6 +6,7 @@ import { forwardRef } from "react";
 import ScrollContainer from "../../components/container/ScrollContainer";
 import useIsMobile from "../../hooks/useIsMobile";
 import styles from "./AboutSection.module.scss";
+import profilePicture from "../../assets/me.jpg";
 
 const ContactSection = () => {
   return (
@@ -34,21 +35,20 @@ interface AboutSectionProps {
   id: string;
   className?: string;
   description: string;
-  image: string;
 }
 
 const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
-  { id, className = "", description, image }: AboutSectionProps,
+  { id, className = "", description }: AboutSectionProps,
   ref
 ) {
   const isMobile = useIsMobile();
 
   return (
-    <div className={className} ref={ref} id={id}>
+    <div className={`${className} ${styles.section} section`} ref={ref} id={id}>
       <ScrollContainer type="fadeIn">
         <div className={styles.pictureContainer}>
           <Image
-            src={image}
+            src={profilePicture}
             alt="Profile picture"
             className={styles.profilePic}
             width={200}

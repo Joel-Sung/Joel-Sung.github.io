@@ -1,6 +1,12 @@
 import Link from "next/link";
-import { Sections } from "../../types/types";
 import styles from "./NavMenu.module.scss";
+import {
+  ABOUT_ID,
+  JOBS_ID,
+  EDUCATION_ID,
+  PROJECTS_ID,
+  ACTIVITIES_ID,
+} from "../../constants/constants";
 
 interface MenuItemProps {
   href: string;
@@ -39,7 +45,7 @@ const MenuItem = ({ href, title, isActive, onClick }: MenuItemProps) => {
 
 interface NavMenuProps {
   menuOpen: boolean;
-  currentSection: Sections;
+  currentSection: string;
   onMenuClick: () => void;
 }
 export const NavMenu = ({
@@ -56,33 +62,33 @@ export const NavMenu = ({
         `}
       >
         <MenuItem
-          href="#about-section"
+          href="#About"
           title="About"
-          isActive={currentSection === Sections.ABOUT}
+          isActive={currentSection === ABOUT_ID}
           onClick={onMenuClick}
         />
         <MenuItem
-          href="#jobs-section"
+          href="#Jobs"
           title="Jobs"
-          isActive={currentSection === Sections.JOBS}
+          isActive={currentSection === JOBS_ID}
           onClick={onMenuClick}
         />
         <MenuItem
-          href="#education-section"
+          href="#Education"
           title="Education"
-          isActive={currentSection === Sections.EDUCATION}
+          isActive={currentSection === EDUCATION_ID}
           onClick={onMenuClick}
         />
         <MenuItem
-          href="#projects-section"
+          href="#Projects"
           title="Projects"
-          isActive={currentSection === Sections.PROJECTS}
+          isActive={currentSection === PROJECTS_ID}
           onClick={onMenuClick}
         />
         <MenuItem
-          href="#activities-section"
+          href="#Activities"
           title="Other Activities"
-          isActive={currentSection === Sections.ACTIVITIES}
+          isActive={currentSection === ACTIVITIES_ID}
           onClick={onMenuClick}
         />
       </div>
