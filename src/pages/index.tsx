@@ -31,6 +31,8 @@ export default function HomePage({ aboutSectionData, sectionsData }) {
     useState<SectionDocument | null>(null);
 
   useEffect(() => {
+    setMounted(true);
+
     setAboutSection(aboutSectionData);
     setJobSection(
       sectionsData.find((section) => section.title === "Work Experiences")
@@ -47,6 +49,12 @@ export default function HomePage({ aboutSectionData, sectionsData }) {
       )
     );
   }, []);
+
+  const [mounted, setMounted] = useState(false);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className={styles.background}>
