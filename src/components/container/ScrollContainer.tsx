@@ -9,7 +9,7 @@ interface ScrollContainerProps {
 }
 
 export default function ScrollContainer(props: ScrollContainerProps) {
-  const { children, threshold = 0.0, type = "slideUp", className } = props;
+  const { children, threshold = 0.0, type = "fadeIn", className } = props;
 
   const ref = useRef(null);
 
