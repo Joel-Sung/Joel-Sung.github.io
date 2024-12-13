@@ -35,10 +35,11 @@ interface AboutSectionProps {
   id: string;
   className?: string;
   description: string;
+  imageUrl: string;
 }
 
 const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
-  { id, className = "", description }: AboutSectionProps,
+  { id, className = "", description, imageUrl }: AboutSectionProps,
   ref
 ) {
   const isMobile = useIsMobile();
@@ -48,7 +49,7 @@ const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
       <ScrollContainer type="fadeIn">
         <div className={styles.pictureContainer}>
           <Image
-            src={profilePicture}
+            src={imageUrl !== "" ? imageUrl : profilePicture}
             alt="Profile picture"
             className={styles.profilePic}
             width={200}

@@ -80,6 +80,7 @@ export default function HomePage() {
                 description={aboutSection?.description || ""}
                 id={ABOUT_ID}
                 ref={aboutRef}
+                imageUrl={aboutSection?.imageUrl || ""}
               />
 
               <Section id={JOBS_ID} ref={jobRef} section={jobSection} />
