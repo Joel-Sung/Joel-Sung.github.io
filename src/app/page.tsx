@@ -14,8 +14,11 @@ import {
   JOBS_ID,
   PROJECTS_ID,
 } from "../constants/constants";
+import LoadingScreen from "../features/LoadingScreen";
 
 export default function HomePage() {
+  const [isSanityDataFetched, setIsSanityDataFetched] = useState(false);
+
   const aboutRef = useRef(null);
   const jobRef = useRef(null);
   const educationRef = useRef(null);
@@ -37,6 +40,8 @@ export default function HomePage() {
       try {
         const aboutSectionData = await fetchAbout();
         const sectionsData = await fetchSections();
+
+        setIsSanityDataFetched(true);
 
         setAboutSection(aboutSectionData);
         setJobSection(
@@ -62,34 +67,44 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className={styles.background}>
-      <div className={styles.main}>
-        <NavBar />
+    <>
+      {!isSanityDataFetched ? (
+        <LoadingScreen />
+      ) : (
+        <div className={styles.background}>
+          <div className={styles.main}>
+            <NavBar />
 
-        <div className={styles.sections}>
-          <AboutSection
-            description={aboutSection?.description || ""}
-            id={ABOUT_ID}
-            ref={aboutRef}
-          />
+            <div className={styles.sections}>
+              <AboutSection
+                description={aboutSection?.description || ""}
+                id={ABOUT_ID}
+                ref={aboutRef}
+              />
 
-          <Section id={JOBS_ID} ref={jobRef} section={jobSection} />
+              <Section id={JOBS_ID} ref={jobRef} section={jobSection} />
 
-          <Section
-            id={EDUCATION_ID}
-            ref={educationRef}
-            section={educationSection}
-          />
+              <Section
+                id={EDUCATION_ID}
+                ref={educationRef}
+                section={educationSection}
+              />
 
-          <Section id={PROJECTS_ID} ref={projectRef} section={projectSection} />
+              <Section
+                id={PROJECTS_ID}
+                ref={projectRef}
+                section={projectSection}
+              />
 
-          <Section
-            id={ACTIVITIES_ID}
-            ref={activitiesRef}
-            section={activitiesSection}
-          />
+              <Section
+                id={ACTIVITIES_ID}
+                ref={activitiesRef}
+                section={activitiesSection}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
