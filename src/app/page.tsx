@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import { fetchAbout, fetchSections } from "../../sanity/api";
 import { AboutDocument, SectionDocument } from "../../sanity/types";
 import NavBar from "../features/navBar/NavBar";
 import AboutSection from "../features/section/AboutSection";
 import Section from "../features/section/Section";
-import styles from "./index.module.scss";
+import styles from "./page.module.scss";
 import {
   ABOUT_ID,
   ACTIVITIES_ID,
@@ -13,7 +15,7 @@ import {
   PROJECTS_ID,
 } from "../constants/constants";
 
-export default function HomePage({ aboutSectionData, sectionsData }) {
+export default function HomePage() {
   const aboutRef = useRef(null);
   const jobRef = useRef(null);
   const educationRef = useRef(null);
@@ -31,30 +33,33 @@ export default function HomePage({ aboutSectionData, sectionsData }) {
     useState<SectionDocument | null>(null);
 
   useEffect(() => {
-    setMounted(true);
+    async function fetchData() {
+      try {
+        const aboutSectionData = await fetchAbout();
+        const sectionsData = await fetchSections();
 
-    setAboutSection(aboutSectionData);
-    setJobSection(
-      sectionsData.find((section) => section.title === "Work Experiences")
-    );
-    setEducationSection(
-      sectionsData.find((section) => section.title === "Education")
-    );
-    setProjectSection(
-      sectionsData.find((section) => section.title === "Past Projects")
-    );
-    setActivitiesSection(
-      sectionsData.find(
-        (section) => section.title === "Co-Curricular Activities"
-      )
-    );
+        setAboutSection(aboutSectionData);
+        setJobSection(
+          sectionsData.find((section) => section.title === "Work Experiences")
+        );
+        setEducationSection(
+          sectionsData.find((section) => section.title === "Education")
+        );
+        setProjectSection(
+          sectionsData.find((section) => section.title === "Past Projects")
+        );
+        setActivitiesSection(
+          sectionsData.find(
+            (section) => section.title === "Co-Curricular Activities"
+          )
+        );
+      } catch (error) {
+        console.error("Unable to fetch Sanity data:", error);
+      }
+    }
+
+    fetchData();
   }, []);
-
-  const [mounted, setMounted] = useState(false);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <div className={styles.background}>
@@ -87,16 +92,4 @@ export default function HomePage({ aboutSectionData, sectionsData }) {
       </div>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const aboutSectionData = await fetchAbout();
-  const sectionsData = await fetchSections();
-
-  return {
-    props: {
-      aboutSectionData,
-      sectionsData,
-    },
-  };
 }

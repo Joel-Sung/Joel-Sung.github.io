@@ -1,12 +1,12 @@
-const path = require('path')
+/** @type {import('next').NextConfig} */
 
-module.exports = {
-  output: 'export',
-  images: {
-    domains: ['cdn.sanity.com'],
-    unoptimized: true
-  },
+const path = require("path");
+
+const nextConfig = {
+  reactStrictMode: true,
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+    includePaths: [path.join(__dirname, "styles")],
   },
-}
+};
+
+module.exports = nextConfig;
