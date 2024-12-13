@@ -3,8 +3,9 @@ import "../styles/global.scss";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Your App Title", // Update with your app's metadata
-  description: "Your app description",
+  title: "Joel Sung's Portfolio Page",
+  description:
+    "This web application lists Joel Sung's work experiences, past projects, education, co-curricular activities and certifications.",
 };
 
 export default function RootLayout({
