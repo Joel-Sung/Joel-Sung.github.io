@@ -1,23 +1,29 @@
 import { faBars, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import ScrollContainer from "../../components/container/ScrollContainer";
 import styles from "./NavBar.module.scss";
-import { NavMenu } from "./NavMenu";
-import { ABOUT_ID } from "../../constants/constants";
+import NavMenu from "./NavMenu";
+import { AboutDocument, SectionDocument } from "../../../sanity/types";
 
-export default function NavBar() {
+interface NavBarProps {
+  sections: (SectionDocument | null)[];
+  aboutSection: AboutDocument;
+}
+
+export default function NavBar({ sections, aboutSection }: NavBarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [sectionActive, setSectionActive] = useState<string>(ABOUT_ID);
+  const [sectionActive, setSectionActive] = useState<string>(
+    aboutSection.title
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.querySelector(".navbar") as HTMLElement;
-      const sections = document.querySelectorAll(".section");
+      const sectionElements = document.querySelectorAll(".section");
 
       const navbarBottom = navbar.getBoundingClientRect().bottom;
 
-      sections.forEach((section) => {
+      sectionElements.forEach((section) => {
         const sectionTop = section.getBoundingClientRect().top;
 
         if (
@@ -37,7 +43,7 @@ export default function NavBar() {
   }, []);
 
   return (
-    <ScrollContainer type="fadeIn" className={styles.container}>
+    <div className={styles.container}>
       <div className={`${styles.header} navbar`}>
         <FontAwesomeIcon
           icon={menuOpen ? faChevronLeft : faBars}
@@ -51,7 +57,9 @@ export default function NavBar() {
         menuOpen={menuOpen}
         currentSection={sectionActive}
         onMenuClick={() => setMenuOpen(false)}
+        sections={sections}
+        aboutSection={aboutSection}
       />
-    </ScrollContainer>
+    </div>
   );
 }

@@ -1,12 +1,6 @@
 import Link from "next/link";
 import styles from "./NavMenu.module.scss";
-import {
-  ABOUT_ID,
-  JOBS_ID,
-  EDUCATION_ID,
-  PROJECTS_ID,
-  ACTIVITIES_ID,
-} from "../../constants/constants";
+import { AboutDocument, SectionDocument } from "../../../sanity/types";
 
 interface MenuItemProps {
   href: string;
@@ -14,7 +8,8 @@ interface MenuItemProps {
   isActive: boolean;
   onClick: () => void;
 }
-const MenuItem = ({ href, title, isActive, onClick }: MenuItemProps) => {
+
+function MenuItem({ href, title, isActive, onClick }: MenuItemProps) {
   return (
     <Link
       href={href}
@@ -41,18 +36,23 @@ const MenuItem = ({ href, title, isActive, onClick }: MenuItemProps) => {
       {title}
     </Link>
   );
-};
+}
 
 interface NavMenuProps {
   menuOpen: boolean;
   currentSection: string;
   onMenuClick: () => void;
+  sections: (SectionDocument | null)[];
+  aboutSection: AboutDocument;
 }
-export const NavMenu = ({
+
+export default function NavMenu({
   menuOpen,
   currentSection,
   onMenuClick,
-}: NavMenuProps) => {
+  sections,
+  aboutSection,
+}: NavMenuProps) {
   return (
     <div className={styles.container}>
       <div
@@ -62,36 +62,24 @@ export const NavMenu = ({
         `}
       >
         <MenuItem
-          href="#About"
-          title="About"
-          isActive={currentSection === ABOUT_ID}
+          href={"#" + aboutSection.title}
+          title={aboutSection.title}
+          isActive={currentSection === aboutSection.title}
           onClick={onMenuClick}
         />
-        <MenuItem
-          href="#Jobs"
-          title="Jobs"
-          isActive={currentSection === JOBS_ID}
-          onClick={onMenuClick}
-        />
-        <MenuItem
-          href="#Education"
-          title="Education"
-          isActive={currentSection === EDUCATION_ID}
-          onClick={onMenuClick}
-        />
-        <MenuItem
-          href="#Projects"
-          title="Projects"
-          isActive={currentSection === PROJECTS_ID}
-          onClick={onMenuClick}
-        />
-        <MenuItem
-          href="#Activities"
-          title="Other Activities"
-          isActive={currentSection === ACTIVITIES_ID}
-          onClick={onMenuClick}
-        />
+
+        {sections.map((section) => {
+          return (
+            <MenuItem
+              key={section.title}
+              href={"#" + section.title}
+              title={section.title}
+              isActive={currentSection === section.title}
+              onClick={onMenuClick}
+            />
+          );
+        })}
       </div>
     </div>
   );
-};
+}

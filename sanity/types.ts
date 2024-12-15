@@ -1,4 +1,5 @@
 export interface AboutDocument {
+  title: string;
   description: string;
   imageUrl: string;
 }

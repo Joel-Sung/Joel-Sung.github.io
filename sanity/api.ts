@@ -3,6 +3,7 @@ import { AboutDocument, SectionDocument } from "./types";
 
 const ABOUT_QUERY = `
   *[_type == "about"][0] {
+    title,
     description,
     "imageUrl": image.asset->url
   }
