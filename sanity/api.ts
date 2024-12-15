@@ -8,7 +8,7 @@ const ABOUT_QUERY = `
     "imageUrl": image.asset->url
   }
 `;
-const SECTION_QUERY = `*[_type == "section"]`;
+const SECTION_QUERY = `*[_type == "section"] | order(order asc)`;
 
 export const fetchAbout = async () => {
   const aboutSection = await client.fetch<AboutDocument>(ABOUT_QUERY);
