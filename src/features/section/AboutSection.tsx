@@ -9,6 +9,8 @@ import styles from "./AboutSection.module.scss";
 import profilePicture from "../../assets/me.jpg";
 
 const ContactSection = () => {
+  const githubLink = "https://github.com/Joel-Sung";
+  const linkedinLink = "https://www.linkedin.com/in/joel-sung-568418122/";
   return (
     <div className={styles.contactSection}>
       <div>Contact me!</div>
@@ -17,14 +19,14 @@ const ContactSection = () => {
       </div>
       <div>
         <FontAwesomeIcon icon={faGithub} />{" "}
-        <a href="https://github.com/Joel-Sung">
-          {"https://github.com/Joel-Sung"}
+        <a href={githubLink} title={githubLink}>
+          {"GitHub"}
         </a>
       </div>
       <div>
         <FontAwesomeIcon icon={faLinkedin} />{" "}
-        <a href="https://www.linkedin.com/in/joel-sung-568418122/">
-          {"https://www.linkedin.com/in/joel-sung-568418122/"}
+        <a href={linkedinLink} title={linkedinLink}>
+          {"LinkedIn"}
         </a>
       </div>
     </div>
@@ -40,7 +42,7 @@ interface AboutSectionProps {
 
 const AboutSection = forwardRef<HTMLDivElement, AboutSectionProps>(function (
   { id, className = "", description, imageUrl }: AboutSectionProps,
-  ref
+  ref,
 ) {
   const isMobile = useIsMobile();
 

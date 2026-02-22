@@ -23,7 +23,7 @@ export default function ItemCard({
 }: ItemCardProps) {
   return (
     <ScrollContainer className={styles.title}>
-      <a className={styles.container} href={link}>
+      <a className={styles.container} href={link} title={link}>
         <div className={styles.header}>
           <div className={styles.duration}>{duration}</div>
           {link && (
